@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from datetime import datetime
+from functools import wraps
 from pathlib import Path
 
 from flask import (
