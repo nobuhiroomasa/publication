@@ -1,61 +1,61 @@
-# Sample Cafe CMS Demo
+# サンプルカフェ CMS デモ
 
-Hospitality-focused CMS demo featuring a public-facing official site and a secure admin console. Designed as a portfolio-ready showcase that demonstrates content management, loading animations, and a refined cafe aesthetic.
+公開向けの公式サイトと管理者専用のコンソールを備えた、ホスピタリティ業界向けの CMS デモです。コンテンツ管理、ページごとのローディングアニメーション、洗練されたカフェの世界観をポートフォリオで紹介することを目的としています。
 
-## Features
+## 特長
 
-- **Public site** with dedicated pages for Top, Access, Reservations, Gallery, Story, and Highlights plus curated announcements.
-- **Stylish loading experience** tailored to cafes and dining establishments on every page.
-- **Admin console** requiring authentication (default credentials `admin` / `admin1234`) with strong password hashing via PBKDF2.
-- **Content management** for hero copy, body text, highlight statements, image URLs, and structured meta information per section.
-- **Gallery tools** for uploading/removing imagery stored securely on the server.
-- **Highlights & announcements** modules to promote seasonal experiences and timely updates.
-- **SQLite database** seeded automatically on first run with sample data and secure credential storage.
+- **公開サイト**: トップ、アクセス、予約、ギャラリー、ストーリー、ハイライトに対応する各ページとお知らせ機能を提供します。
+- **スタイリッシュなローディング演出**: すべてのページでカフェやダイニングを意識した体験を演出します。
+- **管理コンソール**: 認証必須の管理画面を備え、デフォルト認証情報 `admin` / `admin1234` を PBKDF2 による強力なハッシュで保護します。
+- **コンテンツ管理**: ヒーローコピー、本文、ハイライト文、画像 URL、セクションごとの構造化メタ情報を編集できます。
+- **ギャラリーツール**: 画像のアップロード・削除に対応し、サーバー上で安全に管理します。
+- **ハイライトとお知らせ**: 季節限定メニューや最新情報を発信できます。
+- **SQLite データベース**: 初回起動時に自動でサンプルデータと安全な資格情報を投入します。
 
-## Getting Started
+## セットアップ
 
-1. **Install dependencies**
+1. **依存パッケージのインストール**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Run the development server**
+2. **開発サーバーの起動**
 
    ```bash
    flask --app app run
    ```
 
-   The application initializes the SQLite database (`site.db`) on first launch and seeds demo content.
+   初回起動時に SQLite データベース (`site.db`) が生成され、デモ用コンテンツが投入されます。
 
-3. **Access the sites**
+3. **アクセス方法**
 
-   - Public site: [http://localhost:5000](http://localhost:5000)
-   - Admin console: [http://localhost:5000/admin/login](http://localhost:5000/admin/login)
+   - 公開サイト: [http://localhost:5000](http://localhost:5000)
+   - 管理コンソール: [http://localhost:5000/admin/login](http://localhost:5000/admin/login)
 
-4. **Login credentials**
+4. **ログイン情報**
 
    - ID: `admin`
-   - Password: `admin1234`
+   - パスワード: `admin1234`
 
-   Update the credentials immediately after logging in by modifying the user table (future enhancement could expose a password change UI).
+   ログイン後はユーザーテーブルを更新し、速やかに認証情報を変更してください（将来的な改良でパスワード変更 UI を追加予定）。
 
-## Project Structure
+## プロジェクト構成
 
 ```
-app.py                # Flask application factory and routes
-requirements.txt      # Python dependencies
-site.db               # SQLite database (created on first run)
-templates/            # Jinja2 templates for public and admin areas
-static/css/           # Styling for public site and admin console
-static/js/            # Front-end interactions (navigation, loaders)
-static/images/        # SVG placeholders for hero/galleries
-static/uploads/       # User-uploaded gallery assets
+app.py                # Flask アプリケーションファクトリとルート定義
+requirements.txt      # Python 依存パッケージ
+site.db               # SQLite データベース（初回起動時に生成）
+templates/            # 公開サイトと管理画面の Jinja2 テンプレート
+static/css/           # 公開サイトと管理画面のスタイル
+static/js/            # ナビゲーションやローディング演出などのフロントエンド処理
+static/images/        # ヒーロー・ギャラリー用の SVG 画像
+static/uploads/       # 管理画面からアップロードされた画像
 ```
 
-## Notes
+## 補足
 
-- All textual and visual content is branded as "Sample" to emphasise demo usage.
-- The design language is fixed to preserve a consistent showcase aesthetic; admins can modify copy and assets within that framework.
-- Passwords are stored using Werkzeug's `generate_password_hash` (PBKDF2-SHA256).
-- Additional enhancements (e.g., password reset, analytics) can be layered on easily if needed for your official portfolio.
+- テキストやビジュアルはすべて「サンプル」を想定したデモ用コンテンツです。
+- デザインテイストはショーケースとしての統一感を保つため固定されていますが、文言や素材は管理画面から自由に変更できます。
+- パスワードは Werkzeug の `generate_password_hash`（PBKDF2-SHA256）で安全に保存されます。
+- パスワードリセットやアクセス解析などの機能は、必要に応じて容易に拡張できます。
