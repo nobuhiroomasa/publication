@@ -1,0 +1,44 @@
+{% extends 'admin/base.html' %}
+{% block title %}Dashboard | Sample Cafe CMS{% endblock %}
+{% block content %}
+<section class="dashboard">
+    <header class="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>管理画面から公式サイトのコンテンツを更新できます。</p>
+    </header>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="label">Gallery Items</span>
+            <span class="value">{{ stats['gallery_count'] }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Highlights</span>
+            <span class="value">{{ stats['feature_count'] }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Announcements</span>
+            <span class="value">{{ stats['announcement_count'] }}</span>
+        </div>
+    </div>
+    <section class="content-section">
+        <h2>ページコンテンツ</h2>
+        <div class="content-grid">
+            {% for item in contents %}
+            <article class="content-card">
+                <h3>{{ item['section'].title() }}</h3>
+                <p class="content-summary">{{ item['title'] }} — {{ item['subtitle'] }}</p>
+                <a href="{{ url_for('admin.edit_content', section=item['section']) }}" class="btn-outline">編集</a>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="content-section">
+        <h2>クイックアクション</h2>
+        <div class="quick-actions">
+            <a href="{{ url_for('admin.manage_gallery') }}" class="btn-primary">ギャラリー管理</a>
+            <a href="{{ url_for('admin.manage_features') }}" class="btn-primary">ハイライト管理</a>
+            <a href="{{ url_for('admin.manage_announcements') }}" class="btn-primary">お知らせ管理</a>
+        </div>
+    </section>
+</section>
+{% endblock %}

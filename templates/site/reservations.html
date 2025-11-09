@@ -1,0 +1,50 @@
+{% extends 'site/base.html' %}
+{% block title %}Reservations | Sample Cafe{% endblock %}
+{% block content %}
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>{{ content['title'] }}</h1>
+        <p>{{ content['subtitle'] }}</p>
+    </div>
+</section>
+<section class="page-section container two-column">
+    <div>
+        <h2>Reservation Guidance</h2>
+        <p>{{ content['body'] }}</p>
+        <div class="info-block">
+            <h3>Promise</h3>
+            <p>{{ content['highlight'] }}</p>
+        </div>
+    </div>
+    <div class="reservation-card">
+        <h3>Secure Your Seat</h3>
+        {% set cta, link = ('Reserve', '#') %}
+        {% if content['extra_info'] and 'cta=' in content['extra_info'] %}
+            {% set parts = content['extra_info'].split('|', 1) %}
+            {% set cta = parts[0].split('=',1)[1] %}
+            {% if parts|length > 1 and 'link=' in parts[1] %}
+                {% set link = parts[1].split('=',1)[1] %}
+            {% endif %}
+        {% endif %}
+        <a href="{{ link }}" class="btn-primary" target="_blank" rel="noopener">{{ cta }}</a>
+        <p class="note">Integrate your booking platform link or contact form.</p>
+    </div>
+</section>
+<section class="page-section accent">
+    <div class="container split">
+        <div>
+            <h2>Group Bookings</h2>
+            <p>Highlight private events, tasting sessions, or corporate bookings. Showcase your flexibility and tailored hospitality.</p>
+        </div>
+        <div>
+            <h2>Reservation Etiquette</h2>
+            <ul class="bullet-list">
+                <li>Outline deposit policies or time limits.</li>
+                <li>Detail cancellation procedures.</li>
+                <li>Encourage special requests to elevate service.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

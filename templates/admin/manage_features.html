@@ -1,0 +1,39 @@
+{% extends 'admin/base.html' %}
+{% block title %}Highlights Management | Sample Cafe CMS{% endblock %}
+{% block content %}
+<section class="form-section">
+    <header>
+        <h1>ハイライト管理</h1>
+        <p>紹介したい魅力ポイントを追加・削除できます。</p>
+    </header>
+    <form method="post" class="form-grid compact">
+        <input type="hidden" name="action" value="add">
+        <label>タイトル
+            <input type="text" name="title" required>
+        </label>
+        <label>説明
+            <textarea name="description" rows="3" required></textarea>
+        </label>
+        <label>アイコン（Font Awesome）
+            <input type="text" name="icon" placeholder="例: fa-leaf">
+        </label>
+        <button type="submit" class="btn-primary">追加</button>
+    </form>
+    <div class="feature-admin-grid">
+        {% for feature in features %}
+        <div class="feature-admin-item">
+            <i class="fas {{ feature['icon'] }}"></i>
+            <div>
+                <h3>{{ feature['title'] }}</h3>
+                <p>{{ feature['description'] }}</p>
+            </div>
+            <form method="post">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="feature_id" value="{{ feature['id'] }}">
+                <button type="submit" class="btn-outline">削除</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
