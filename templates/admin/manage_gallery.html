@@ -1,0 +1,33 @@
+{% extends 'admin/base.html' %}
+{% block title %}Gallery Management | Sample Cafe CMS{% endblock %}
+{% block content %}
+<section class="form-section">
+    <header>
+        <h1>ギャラリー管理</h1>
+        <p>掲載画像をアップロードまたは削除できます。</p>
+    </header>
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+        <input type="hidden" name="action" value="upload">
+        <label>画像ファイル
+            <input type="file" name="image" accept="image/*" required>
+        </label>
+        <label>キャプション
+            <input type="text" name="caption" placeholder="例: シグネチャードリンク">
+        </label>
+        <button type="submit" class="btn-primary">アップロード</button>
+    </form>
+    <div class="gallery-admin-grid">
+        {% for image in images %}
+        <div class="gallery-admin-item">
+            <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'Gallery image' }}">
+            <p>{{ image['caption'] }}</p>
+            <form method="post">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="image_id" value="{{ image['id'] }}">
+                <button type="submit" class="btn-outline">削除</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

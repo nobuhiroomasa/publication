@@ -1,0 +1,59 @@
+{% extends 'site/base.html' %}
+{% block title %}Story | Sample Cafe{% endblock %}
+{% block content %}
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>{{ content['title'] }}</h1>
+        <p>{{ content['subtitle'] }}</p>
+    </div>
+</section>
+<section class="page-section container two-column">
+    <div>
+        <h2>Our Narrative</h2>
+        <p>{{ content['body'] }}</p>
+        <div class="info-block">
+            <h3>Philosophy</h3>
+            <p>{{ content['highlight'] }}</p>
+        </div>
+    </div>
+    <div class="story-card">
+        <h3>Team</h3>
+        {% if content['extra_info'] and 'team=' in content['extra_info'] %}
+            {% set members = content['extra_info'].split('=',1)[1].split(',') %}
+            <ul>
+                {% for member in members %}
+                <li>{{ member.strip() }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Introduce your key members and collaborators.</p>
+        {% endif %}
+    </div>
+</section>
+<section class="page-section container">
+    <header class="section-header">
+        <h2>Announcements & Media</h2>
+        <p>Share press coverage, collaborations, or recent highlights.</p>
+    </header>
+    <div class="announcement-grid">
+        {% for announcement in announcements %}
+        <article class="announcement-card">
+            <time datetime="{{ announcement['published_at'] }}">{{ announcement['published_at'] | replace('T', ' ') }}</time>
+            <h3>{{ announcement['title'] }}</h3>
+            <p>{{ announcement['content'] }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+<section class="page-section accent">
+    <div class="container">
+        <h2>Values</h2>
+        <ul class="bullet-list">
+            <li>Respect for producers and provenance.</li>
+            <li>Immersive guest experience through details.</li>
+            <li>Commitment to sustainability and transparency.</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

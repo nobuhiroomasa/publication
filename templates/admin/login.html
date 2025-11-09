@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sample Cafe CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="login-body">
+<div class="login-card">
+    <div class="login-brand">
+        <i class="fas fa-mug-hot"></i>
+        <h1>Sample Cafe CMS</h1>
+        <p>Secure access to manage your official site.</p>
+    </div>
+    <form method="post" class="login-form">
+        <label for="username">ログインID</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+        <label for="password">パスワード</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+        <button type="submit" class="btn-primary">ログイン</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-wrapper">
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <p class="login-note">初期ID: admin / 初期パスワード: admin1234<br>ログイン後に必ず変更してください。</p>
+</div>
+</body>
+</html>

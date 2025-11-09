@@ -1,0 +1,29 @@
+{% extends 'site/base.html' %}
+{% block title %}Gallery | Sample Cafe{% endblock %}
+{% block content %}
+<section class="page-hero small" style="background-image: url('/static/images/gallery-banner.svg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Gallery</h1>
+        <p>Curated visuals to narrate the experience.</p>
+    </div>
+</section>
+<section class="page-section container">
+    <div class="masonry-grid">
+        {% for image in images %}
+        <figure class="masonry-item">
+            <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'Gallery image' }}">
+            {% if image['caption'] %}
+            <figcaption>{{ image['caption'] }}</figcaption>
+            {% endif %}
+        </figure>
+        {% endfor %}
+    </div>
+</section>
+<section class="page-section accent">
+    <div class="container">
+        <h2>Visual Strategy</h2>
+        <p>Utilize this gallery to highlight seasonal menus, signature beverages, community events, or behind-the-scenes stories.</p>
+    </div>
+</section>
+{% endblock %}

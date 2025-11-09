@@ -1,0 +1,36 @@
+{% extends 'admin/base.html' %}
+{% block title %}Edit {{ content['section'] }} | Sample Cafe CMS{% endblock %}
+{% block content %}
+<section class="form-section">
+    <header>
+        <h1>コンテンツ編集: {{ content['section'].title() }}</h1>
+        <p>文章と画像URLを更新できます。デザインは固定されています。</p>
+    </header>
+    <form method="post" class="form-grid">
+        <label>タイトル
+            <input type="text" name="title" value="{{ content['title'] }}" required>
+        </label>
+        <label>サブタイトル
+            <input type="text" name="subtitle" value="{{ content['subtitle'] }}">
+        </label>
+        <label>本文
+            <textarea name="body" rows="6">{{ content['body'] }}</textarea>
+        </label>
+        <label>ハイライト
+            <input type="text" name="highlight" value="{{ content['highlight'] }}">
+        </label>
+        <label>背景・画像URL
+            <input type="text" name="image" value="{{ content['image'] }}">
+            <span class="form-hint">例: /static/images/hero.jpg または外部URL</span>
+        </label>
+        <label>追加情報
+            <textarea name="extra_info" rows="4">{{ content['extra_info'] }}</textarea>
+            <span class="form-hint">キー=値形式で保存されます。セクションによって利用方法が異なります。</span>
+        </label>
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">保存</button>
+            <a href="{{ url_for('admin.dashboard') }}" class="btn-outline">戻る</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

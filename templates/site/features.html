@@ -1,0 +1,39 @@
+{% extends 'site/base.html' %}
+{% block title %}Highlights | Sample Cafe{% endblock %}
+{% block content %}
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>{{ content['title'] }}</h1>
+        <p>{{ content['subtitle'] }}</p>
+    </div>
+</section>
+<section class="page-section container">
+    <p>{{ content['body'] }}</p>
+    <div class="grid feature-expanded">
+        {% for feature in features %}
+        <div class="feature-card">
+            <i class="fas {{ feature['icon'] }}"></i>
+            <h3>{{ feature['title'] }}</h3>
+            <p>{{ feature['description'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section class="page-section accent">
+    <div class="container split">
+        <div>
+            <h2>Experience Toolkit</h2>
+            <ul class="bullet-list">
+                <li>Menu storytelling and tasting notes.</li>
+                <li>Merchandising, retail, and e-commerce touchpoints.</li>
+                <li>Community programming and collaborative partnerships.</li>
+            </ul>
+        </div>
+        <div>
+            <h2>Implementation Ideas</h2>
+            <p>Use the admin console to toggle seasonal features, launch campaigns, or test new service models before rolling them out.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
