@@ -31,7 +31,7 @@
 3. **アクセス方法**
 
    - 公開サイト: [http://localhost:5000](http://localhost:5000)
-   - 管理コンソール: [http://localhost:5000/admin/login](http://localhost:5000/admin/login)
+   - 管理コンソール: [http://127.0.0.1:5000/admin/login](http://localhost:5000/admin/login)
 
 4. **ログイン情報**
 

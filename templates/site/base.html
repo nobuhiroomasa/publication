@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sample Cafe Official Site{% endblock %}</title>
+    <title>{% block title %}Sample Cafe 公式サイト{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,14 +16,14 @@
 <div class="page-loader" id="pageLoader">
     <div class="loader-content">
         <div class="loader-logo"><i class="fas fa-mug-hot"></i></div>
-        <p class="loader-text">香りを準備中…</p>
+        <p class="loader-text">淹れたてのひとときを読み込み中...</p>
     </div>
 </div>
 <header class="site-header">
     <div class="header-inner container">
         <div class="brand">Sample Cafe<span>URBAN SLOW COFFEE</span></div>
         <nav class="main-nav">
-            <button class="nav-toggle" aria-label="メニューを開く">
+            <button class="nav-toggle" aria-label="ナビゲーションを開閉">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -41,36 +41,34 @@
     {% block content %}{% endblock %}
 </main>
 <footer class="site-footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <h4>Sample Cafe</h4>
-                <p>20〜40代がふらっと立ち寄れる、ゆるくて鮮やかなサードプレイスを提案しています。</p>
-            </div>
-            <div>
-                <h4>Contact</h4>
-                <ul>
-                    <li>Mail : hello@example.com</li>
-                    <li>Tel : 000-0000-0000</li>
-                    <li>Address : Adminから自由に更新できます</li>
-                </ul>
-            </div>
-            <div>
-                <h4>Hours</h4>
-                <p>Weekdays 09:00-20:00<br>Weekends 10:00-22:00</p>
-            </div>
-            <div>
-                <h4>Follow</h4>
-                <p>撮ってすぐ共有したくなる瞬間をインスタで毎日発信中。</p>
-                <div class="socials">
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                </div>
+    <div class="footer-grid">
+        <div>
+            <h4>Sample Cafe</h4>
+            <p>カフェ・飲食店向けのデモ用CMSサイトです。ブランドの世界観づくりにご活用いただけます。</p>
+        </div>
+        <div>
+            <h4>お問い合わせ</h4>
+            <ul>
+                <li>メール：hello@example.com</li>
+                <li>電話：000-0000-0000</li>
+                <li>住所：管理画面から自由に編集できます。</li>
+            </ul>
+        </div>
+        <div>
+            <h4>営業時間</h4>
+            <p>平日 09:00〜20:00<br>土日祝 10:00〜22:00</p>
+        </div>
+        <div>
+            <h4>SNS</h4>
+            <div class="socials">
+                <a href="#" aria-label="Instagramへ"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebookへ"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="X（旧Twitter）へ"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
         <p class="copyright">© {{ now().year }} Sample Cafe Demo. All rights reserved.</p>
     </div>
+    <p class="copyright">© {{ now().year }} Sample Cafe Demo. 無断転載を禁じます。</p>
 </footer>
 </body>
 </html>
