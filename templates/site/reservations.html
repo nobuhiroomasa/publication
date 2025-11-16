@@ -1,14 +1,13 @@
 {% extends 'site/base.html' %}
 {% block title %}Reservations | Sample Cafe{% endblock %}
 {% block content %}
-<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
-    <div class="overlay"></div>
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');" data-animate>
     <div class="container">
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
     </div>
 </section>
-<section class="page-section container two-column">
+<section class="page-section container two-column" data-animate>
     <div>
         <h2>Reservation Guidance</h2>
         <p>{{ content['body'] }}</p>
@@ -28,21 +27,21 @@
             {% endif %}
         {% endif %}
         <a href="{{ link }}" class="btn-primary" target="_blank" rel="noopener">{{ cta }}</a>
-        <p class="note">Integrate your booking platform link or contact form.</p>
+        <p class="note">ご希望の時間帯や席タイプ、サプライズの相談などもメッセージでどうぞ。</p>
     </div>
 </section>
-<section class="page-section accent">
+<section class="page-section accent" data-animate>
     <div class="container split">
         <div>
             <h2>Group Bookings</h2>
-            <p>Highlight private events, tasting sessions, or corporate bookings. Showcase your flexibility and tailored hospitality.</p>
+            <p>女子会・推し会・撮影利用など、カラーコーデやBGMまで一緒にコーディネート。人数や用途を気軽にご相談ください。</p>
         </div>
         <div>
             <h2>Reservation Etiquette</h2>
             <ul class="bullet-list">
-                <li>Outline deposit policies or time limits.</li>
-                <li>Detail cancellation procedures.</li>
-                <li>Encourage special requests to elevate service.</li>
+                <li>予約変更は前日21:00までにご連絡ください。</li>
+                <li>写真・動画撮影は他のお客様への配慮をお願いします。</li>
+                <li>旬の花材やスイーツは数量限定のため、お早めのご予約が安心です。</li>
             </ul>
         </div>
     </div>
