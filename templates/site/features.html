@@ -1,14 +1,13 @@
 {% extends 'site/base.html' %}
 {% block title %}ハイライト | Sample Cafe{% endblock %}
 {% block content %}
-<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
-    <div class="overlay"></div>
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');" data-animate>
     <div class="container">
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
     </div>
 </section>
-<section class="page-section container">
+<section class="page-section container" data-animate>
     <p>{{ content['body'] }}</p>
     <div class="grid feature-expanded">
         {% for feature in features %}
@@ -20,7 +19,7 @@
         {% endfor %}
     </div>
 </section>
-<section class="page-section accent">
+<section class="page-section accent" data-animate>
     <div class="container split">
         <div>
             <h2>体験づくりのヒント</h2>

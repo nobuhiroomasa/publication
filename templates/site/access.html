@@ -1,14 +1,13 @@
 {% extends 'site/base.html' %}
 {% block title %}アクセス | Sample Cafe{% endblock %}
 {% block content %}
-<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
-    <div class="overlay"></div>
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');" data-animate>
     <div class="container">
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
     </div>
 </section>
-<section class="page-section container two-column">
+<section class="page-section container two-column" data-animate>
     <div>
         <h2>ご来店案内</h2>
         <p>{{ content['body'] }}</p>
@@ -35,7 +34,7 @@
         </div>
     </div>
 </section>
-<section class="page-section accent">
+<section class="page-section accent" data-animate>
     <div class="container">
         <h2>アクセスのポイント</h2>
         <p>最寄り駅からの道順や目印、駐車場の有無など、ご来店に役立つ情報をこちらに記載してください。</p>

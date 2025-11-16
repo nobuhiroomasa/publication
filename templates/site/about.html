@@ -1,14 +1,13 @@
 {% extends 'site/base.html' %}
 {% block title %}ストーリー | Sample Cafe{% endblock %}
 {% block content %}
-<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
-    <div class="overlay"></div>
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');" data-animate>
     <div class="container">
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
     </div>
 </section>
-<section class="page-section container two-column">
+<section class="page-section container two-column" data-animate>
     <div>
         <h2>私たちのストーリー</h2>
         <p>{{ content['body'] }}</p>
@@ -31,7 +30,7 @@
         {% endif %}
     </div>
 </section>
-<section class="page-section container">
+<section class="page-section container" data-animate>
     <header class="section-header">
         <h2>お知らせ・メディア掲載</h2>
         <p>メディア掲載、コラボ企画、最近のお知らせなどをこちらに掲載できます。</p>

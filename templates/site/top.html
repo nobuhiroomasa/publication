@@ -1,10 +1,9 @@
 {% extends 'site/base.html' %}
 {% block title %}Sample Cafe | 公式サイト{% endblock %}
 {% block content %}
-<section class="hero" style="background-image: url('{{ content["image"] }}');">
-    <div class="hero-overlay"></div>
+<section class="hero" style="background-image: url('{{ content["image"] }}');" data-animate>
     <div class="hero-content container">
-        <span class="hero-label">Sample Collection</span>
+        <span class="hero-badge">Weekend Lounge</span>
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
         <div class="hero-highlight">{{ content['highlight'] }}</div>
@@ -25,24 +24,29 @@
         <a href="{{ url_for('main.features') }}" class="btn-outline">おすすめを見る</a>
     </div>
 </section>
-<section class="announcements">
+<section class="social-proof" data-animate>
     <div class="container">
         <header class="section-header">
             <h2>お知らせ</h2>
             <p>最新の営業情報やイベント情報などをこちらでご案内します。</p>
         </header>
-        <div class="announcement-grid">
-            {% for announcement in announcements %}
-            <article class="announcement-card">
-                <time datetime="{{ announcement['published_at'] }}">{{ announcement['published_at'] | replace('T', ' ') }}</time>
-                <h3>{{ announcement['title'] }}</h3>
-                <p>{{ announcement['content'] }}</p>
-            </article>
-            {% endfor %}
+        <div class="metrics">
+            <div class="card">
+                <strong data-count="680">0</strong>
+                <span>今月の保存数</span>
+            </div>
+            <div class="card">
+                <strong data-count="120">0</strong>
+                <span>UGCストーリー</span>
+            </div>
+            <div class="card">
+                <strong data-count="48">0</strong>
+                <span>コラボ投稿</span>
+            </div>
         </div>
     </div>
 </section>
-<section class="feature-grid container">
+<section class="feature-grid container" data-animate>
     <header class="section-header">
         <h2>ハイライト</h2>
         <p>お店らしさが伝わるポイントをご紹介します。</p>
@@ -57,7 +61,47 @@
         {% endfor %}
     </div>
 </section>
-<section class="gallery-preview">
+<section class="announcements" data-animate>
+    <div class="container">
+        <header class="section-header">
+            <h2>News & Journal</h2>
+            <p>最新のイベントや限定メニューをチェックして、来店前からワクワクをシェア。</p>
+        </header>
+        <div class="announcement-grid">
+            {% for announcement in announcements %}
+            <article class="announcement-card">
+                <time datetime="{{ announcement['published_at'] }}">{{ announcement['published_at'] | replace('T', ' ') }}</time>
+                <h3>{{ announcement['title'] }}</h3>
+                <p>{{ announcement['content'] }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="insta-focus" data-animate>
+    <div class="container">
+        <div class="insta-header">
+            <div>
+                <p class="hero-label">Instagram Reels</p>
+                <h2>Colorful Moments</h2>
+            </div>
+            <div class="insta-handle">
+                <i class="fab fa-instagram"></i>
+                <span>@samplecafe</span>
+            </div>
+            <a href="https://www.instagram.com/" class="btn-primary" target="_blank" rel="noopener">フォローして最新情報を受け取る</a>
+        </div>
+        <div class="insta-grid">
+            {% for image in gallery[:4] %}
+            <div class="insta-card">
+                <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'Instagram highlight' }}">
+                <p>{{ image['caption'] or 'Daily mood' }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="gallery-preview" data-animate>
     <div class="container">
         <header class="section-header">
             <h2>ギャラリー</h2>

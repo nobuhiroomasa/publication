@@ -6,7 +6,7 @@
     <title>{% block title %}Sample Cafe 公式サイト{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dyZP2w7Uja2+G2kZZgwyU0YzUKGwEuITdSb9VjA36TObgGJE0E7E5Wdl66iRS0LlwM651c01qmPvvrL1jAU6mA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
     <script defer src="{{ url_for('static', filename='js/site.js') }}"></script>
@@ -20,8 +20,8 @@
     </div>
 </div>
 <header class="site-header">
-    <div class="header-inner">
-        <div class="brand">Sample Cafe</div>
+    <div class="header-inner container">
+        <div class="brand">Sample Cafe<span>URBAN SLOW COFFEE</span></div>
         <nav class="main-nav">
             <button class="nav-toggle" aria-label="ナビゲーションを開閉">
                 <span></span>
@@ -33,6 +33,7 @@
                 <li class="nav-item"><a href="{{ url_for(endpoint) }}">{{ label }}</a></li>
                 {% endfor %}
             </ul>
+            <a class="nav-cta" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
         </nav>
     </div>
 </header>
@@ -65,6 +66,7 @@
                 <a href="#" aria-label="X（旧Twitter）へ"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
+        <p class="copyright">© {{ now().year }} Sample Cafe Demo. All rights reserved.</p>
     </div>
     <p class="copyright">© {{ now().year }} Sample Cafe Demo. 無断転載を禁じます。</p>
 </footer>

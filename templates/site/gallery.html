@@ -1,14 +1,13 @@
 {% extends 'site/base.html' %}
 {% block title %}ギャラリー | Sample Cafe{% endblock %}
 {% block content %}
-<section class="page-hero small" style="background-image: url('/static/images/gallery-banner.svg');">
-    <div class="overlay"></div>
+<section class="page-hero small" style="background-image: url('/static/images/gallery-banner.svg');" data-animate>
     <div class="container">
         <h1>ギャラリー</h1>
         <p>写真でお店の雰囲気や体験をお届けします。</p>
     </div>
 </section>
-<section class="page-section container">
+<section class="page-section container" data-animate>
     <div class="masonry-grid">
         {% for image in images %}
         <figure class="masonry-item">
@@ -20,7 +19,7 @@
         {% endfor %}
     </div>
 </section>
-<section class="page-section accent">
+<section class="page-section accent" data-animate>
     <div class="container">
         <h2>ビジュアルの活用アイデア</h2>
         <p>
