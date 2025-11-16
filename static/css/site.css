@@ -186,7 +186,6 @@ a {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2.5rem;
-    margin: -80px auto 4rem;
 }
 
 .intro-card {

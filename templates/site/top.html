@@ -1,5 +1,5 @@
 {% extends 'site/base.html' %}
-{% block title %}Sample Cafe | Official Site{% endblock %}
+{% block title %}Sample Cafe | 公式サイト{% endblock %}
 {% block content %}
 <section class="hero" style="background-image: url('{{ content["image"] }}');">
     <div class="hero-overlay"></div>
@@ -8,25 +8,28 @@
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
         <div class="hero-highlight">{{ content['highlight'] }}</div>
-        <a href="{{ url_for('main.reservations') }}" class="btn-primary">Reserve a Table</a>
+        <a href="{{ url_for('main.reservations') }}" class="btn-primary">席を予約する</a>
     </div>
 </section>
 <section class="intro container">
     <div class="intro-text">
-        <h2>Curated Hospitality Demo</h2>
+        <h2>おもてなしのデモサイト</h2>
         <p>{{ content['body'] }}</p>
     </div>
     <div class="intro-card">
-        <h3>Signature Notes</h3>
-        <p>{{ content['extra_info'].split('=')[1] if content['extra_info'] and 'signature=' in content['extra_info'] else 'Seasonal inspirations available.' }}</p>
-        <a href="{{ url_for('main.features') }}" class="btn-outline">Explore Highlights</a>
+        <h3>おすすめの一杯・一皿</h3>
+        <p>
+            {{ content['extra_info'].split('=')[1] if content['extra_info'] and 'signature=' in content['extra_info'] 
+               else '季節ごとに変わるおすすめメニューをご用意しています。' }}
+        </p>
+        <a href="{{ url_for('main.features') }}" class="btn-outline">おすすめを見る</a>
     </div>
 </section>
 <section class="announcements">
     <div class="container">
         <header class="section-header">
-            <h2>Announcements</h2>
-            <p>Keep guests informed with fresh updates.</p>
+            <h2>お知らせ</h2>
+            <p>最新の営業情報やイベント情報などをこちらでご案内します。</p>
         </header>
         <div class="announcement-grid">
             {% for announcement in announcements %}
@@ -41,8 +44,8 @@
 </section>
 <section class="feature-grid container">
     <header class="section-header">
-        <h2>Highlights</h2>
-        <p>Showcase experiences that define your brand.</p>
+        <h2>ハイライト</h2>
+        <p>お店らしさが伝わるポイントをご紹介します。</p>
     </header>
     <div class="grid">
         {% for feature in features %}
@@ -57,28 +60,28 @@
 <section class="gallery-preview">
     <div class="container">
         <header class="section-header">
-            <h2>Gallery</h2>
-            <p>Visual storytelling from the cafe floor.</p>
+            <h2>ギャラリー</h2>
+            <p>店内の雰囲気やメニューの写真をご覧いただけます。</p>
         </header>
         <div class="gallery-grid">
             {% for image in gallery %}
             <figure>
-                <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'Gallery item' }}">
+                <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'ギャラリー画像' }}">
                 <figcaption>{{ image['caption'] }}</figcaption>
             </figure>
             {% endfor %}
         </div>
         <div class="cta-center">
-            <a href="{{ url_for('main.gallery') }}" class="btn-outline">View Full Gallery</a>
+            <a href="{{ url_for('main.gallery') }}" class="btn-outline">ギャラリーをもっと見る</a>
         </div>
     </div>
 </section>
 <section class="cta-banner" style="background-image: url('/static/images/cta.svg');">
     <div class="overlay"></div>
     <div class="container">
-        <h2>Design your next concept with confidence.</h2>
-        <p>Use this demo CMS to prototype how your story unfolds.</p>
-        <a href="{{ url_for('admin.login') }}" class="btn-primary">Enter Admin Console</a>
+        <h2>あなたのお店のコンセプト設計に。</h2>
+        <p>このデモCMSを使って、ストーリーや見せ方を試しながら作り込めます。</p>
+        <a href="{{ url_for('admin.login') }}" class="btn-primary">管理画面にログイン</a>
     </div>
 </section>
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'site/base.html' %}
-{% block title %}Story | Sample Cafe{% endblock %}
+{% block title %}ストーリー | Sample Cafe{% endblock %}
 {% block content %}
 <section class="page-hero" style="background-image: url('{{ content['image'] }}');">
     <div class="overlay"></div>
@@ -10,15 +10,15 @@
 </section>
 <section class="page-section container two-column">
     <div>
-        <h2>Our Narrative</h2>
+        <h2>私たちのストーリー</h2>
         <p>{{ content['body'] }}</p>
         <div class="info-block">
-            <h3>Philosophy</h3>
+            <h3>コンセプト</h3>
             <p>{{ content['highlight'] }}</p>
         </div>
     </div>
     <div class="story-card">
-        <h3>Team</h3>
+        <h3>スタッフ</h3>
         {% if content['extra_info'] and 'team=' in content['extra_info'] %}
             {% set members = content['extra_info'].split('=',1)[1].split(',') %}
             <ul>
@@ -27,14 +27,14 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>Introduce your key members and collaborators.</p>
+            <p>お店を支える主なスタッフや、関わっている方々を紹介してください。</p>
         {% endif %}
     </div>
 </section>
 <section class="page-section container">
     <header class="section-header">
-        <h2>Announcements & Media</h2>
-        <p>Share press coverage, collaborations, or recent highlights.</p>
+        <h2>お知らせ・メディア掲載</h2>
+        <p>メディア掲載、コラボ企画、最近のお知らせなどをこちらに掲載できます。</p>
     </header>
     <div class="announcement-grid">
         {% for announcement in announcements %}
@@ -48,11 +48,11 @@
 </section>
 <section class="page-section accent">
     <div class="container">
-        <h2>Values</h2>
+        <h2>私たちが大切にしていること</h2>
         <ul class="bullet-list">
-            <li>Respect for producers and provenance.</li>
-            <li>Immersive guest experience through details.</li>
-            <li>Commitment to sustainability and transparency.</li>
+            <li>生産者さんや素材の背景への敬意。</li>
+            <li>細部へのこだわりから生まれる、心地よいひととき。</li>
+            <li>サステナビリティと透明性への継続的な取り組み。</li>
         </ul>
     </div>
 </section>
