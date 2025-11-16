@@ -6,10 +6,13 @@ from pathlib import Path
 
 from flask import (
     Flask,
+    abort,
     flash,
+    jsonify,
     redirect,
     render_template,
     request,
+    send_from_directory,
     session,
     url_for,
 )
@@ -19,6 +22,7 @@ from werkzeug.utils import secure_filename
 BASE_DIR = Path(__file__).resolve().parent
 DATABASE_PATH = BASE_DIR / "site.db"
 UPLOAD_FOLDER = BASE_DIR / "static" / "uploads"
+REACT_DIST = BASE_DIR / "frontend" / "dist"
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 
 
@@ -309,19 +313,6 @@ def update_content(section: str, data: dict) -> None:
 
 def register_routes(app: Flask) -> None:
     @app.context_processor
-    def inject_navigation():
-        return dict(
-            nav_links=[
-                ("ホーム", "main.top"),
-                ("アクセス", "main.access"),
-                ("予約", "main.reservations"),
-                ("ギャラリー", "main.gallery"),
-                ("ストーリー", "main.about"),
-                ("ハイライト", "main.features"),
-            ]
-        )
-
-    @app.context_processor
     def inject_now():
         return dict(now=datetime.utcnow)
 
@@ -334,42 +325,6 @@ def register_routes(app: Flask) -> None:
             return view_func(*args, **kwargs)
 
         return wrapper
-
-    # Public pages blueprint-like grouping
-    def top():
-        content = fetch_content("top")
-        features = fetch_features()
-        announcements = fetch_announcements()
-        gallery = fetch_gallery(limit=4)
-        return render_template(
-            "site/top.html",
-            content=content,
-            features=features,
-            announcements=announcements,
-            gallery=gallery,
-        )
-
-    def access():
-        content = fetch_content("access")
-        return render_template("site/access.html", content=content)
-
-    def reservations():
-        content = fetch_content("reservations")
-        return render_template("site/reservations.html", content=content)
-
-    def gallery():
-        images = fetch_gallery()
-        return render_template("site/gallery.html", images=images)
-
-    def about():
-        content = fetch_content("about")
-        announcements = fetch_announcements()
-        return render_template("site/about.html", content=content, announcements=announcements)
-
-    def features_page():
-        content = fetch_content("features")
-        features = fetch_features()
-        return render_template("site/features.html", content=content, features=features)
 
     # Admin routes
     def login():
@@ -491,16 +446,6 @@ def register_routes(app: Flask) -> None:
             "admin/manage_announcements.html", announcements=announcements
         )
 
-    # Blueprint naming compatibility for nav
-    app.add_url_rule("/", endpoint="main.top", view_func=top)
-    app.add_url_rule("/access", endpoint="main.access", view_func=access)
-    app.add_url_rule(
-        "/reservations", endpoint="main.reservations", view_func=reservations
-    )
-    app.add_url_rule("/gallery", endpoint="main.gallery", view_func=gallery)
-    app.add_url_rule("/about", endpoint="main.about", view_func=about)
-    app.add_url_rule("/highlights", endpoint="main.features", view_func=features_page)
-
     app.add_url_rule(
         "/admin", endpoint="admin.dashboard", view_func=dashboard
     )
@@ -534,6 +479,69 @@ def register_routes(app: Flask) -> None:
         view_func=manage_announcements,
         methods=["GET", "POST"],
     )
+
+    # API endpoints for React frontend
+
+    @app.get("/api/content/<section>")
+    def api_content(section: str):
+        content = fetch_content(section)
+        if not content:
+            return jsonify({"error": "not found"}), 404
+        return jsonify(content)
+
+    @app.get("/api/features")
+    def api_features():
+        return jsonify([dict(row) for row in fetch_features()])
+
+    @app.get("/api/gallery")
+    def api_gallery_endpoint():
+        limit_param = request.args.get("limit")
+        limit = None
+        if limit_param and limit_param.isdigit():
+            limit = int(limit_param)
+        images = fetch_gallery(limit=limit)
+        return jsonify([dict(image) for image in images])
+
+    @app.get("/api/announcements")
+    def api_announcements_endpoint():
+        return jsonify([dict(item) for item in fetch_announcements()])
+
+    @app.get("/api/navigation")
+    def api_navigation():
+        return jsonify(
+            dict(
+                links=[
+                    {"label": "ホーム", "path": "/"},
+                    {"label": "アクセス", "path": "/access"},
+                    {"label": "予約", "path": "/reservations"},
+                    {"label": "ギャラリー", "path": "/gallery"},
+                    {"label": "ストーリー", "path": "/about"},
+                    {"label": "ハイライト", "path": "/highlights"},
+                ]
+            )
+        )
+
+    # Serve React frontend assets
+
+    @app.route("/frontend/<path:filename>")
+    def react_assets(filename: str):
+        asset_path = REACT_DIST / filename
+        if not asset_path.exists():
+            abort(404)
+        return send_from_directory(REACT_DIST, filename)
+
+    @app.route("/", defaults={"path": ""})
+    @app.route("/<path:path>")
+    def frontend_app(path: str):
+        if path.startswith("api") or path.startswith("admin") or path.startswith("static"):
+            abort(404)
+        target = REACT_DIST / path
+        if path and target.exists() and target.is_file():
+            return send_from_directory(REACT_DIST, path)
+        index_file = REACT_DIST / "index.html"
+        if not index_file.exists():
+            abort(404)
+        return send_from_directory(REACT_DIST, "index.html")
 
 
 # Data helpers
