@@ -1,17 +1,17 @@
 {% extends 'site/base.html' %}
-{% block title %}Gallery | Sample Cafe{% endblock %}
+{% block title %}ギャラリー | Sample Cafe{% endblock %}
 {% block content %}
 <section class="page-hero small" style="background-image: url('/static/images/gallery-banner.svg');" data-animate>
     <div class="container">
-        <h1>Gallery</h1>
-        <p>カラフルな空気感をそのまま感じられるフォトダイアリー。</p>
+        <h1>ギャラリー</h1>
+        <p>写真でお店の雰囲気や体験をお届けします。</p>
     </div>
 </section>
 <section class="page-section container" data-animate>
     <div class="masonry-grid">
         {% for image in images %}
         <figure class="masonry-item">
-            <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'Gallery image' }}">
+            <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'ギャラリー画像' }}">
             {% if image['caption'] %}
             <figcaption>{{ image['caption'] }}</figcaption>
             {% endif %}
@@ -21,8 +21,11 @@
 </section>
 <section class="page-section accent" data-animate>
     <div class="container">
-        <h2>Visual Strategy</h2>
-        <p>季節のメニューやドリンクをインタラクティブに見せ、InstagramやPinterestで拡散しやすい比率で撮影しています。来店前から「ここに行きたい」を生む仕掛けです。</p>
+        <h2>ビジュアルの活用アイデア</h2>
+        <p>
+            このギャラリーを使って、季節限定メニューや看板メニュー、イベントの様子、
+            仕込みや店内の舞台裏など、さまざまなストーリーを発信できます。
+        </p>
     </div>
 </section>
 {% endblock %}

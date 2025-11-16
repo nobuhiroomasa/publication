@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Admin | Sample Cafe CMS{% endblock %}</title>
+    <title>{% block title %}管理画面 | Sample Cafe CMS{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -13,13 +13,13 @@
 <body>
 <header class="admin-header">
     <div class="container">
-        <div class="logo">Sample Cafe CMS</div>
+        <div class="logo">Sample Cafe 管理画面</div>
         <nav>
-            <a href="{{ url_for('admin.dashboard') }}">Dashboard</a>
-            <a href="{{ url_for('admin.manage_gallery') }}">Gallery</a>
-            <a href="{{ url_for('admin.manage_features') }}">Highlights</a>
-            <a href="{{ url_for('admin.manage_announcements') }}">Announcements</a>
-            <a href="{{ url_for('admin.logout') }}" class="logout">Logout</a>
+            <a href="{{ url_for('admin.dashboard') }}">ダッシュボード</a>
+            <a href="{{ url_for('admin.manage_gallery') }}">ギャラリー</a>
+            <a href="{{ url_for('admin.manage_features') }}">おすすめ</a>
+            <a href="{{ url_for('admin.manage_announcements') }}">お知らせ</a>
+            <a href="{{ url_for('admin.logout') }}" class="logout">ログアウト</a>
         </nav>
     </div>
 </header>
@@ -39,7 +39,9 @@
 </main>
 <footer class="admin-footer">
     <div class="container">
-        <p>Demo management console for Sample Cafe. Default login: admin / admin1234</p>
+        <p>本ページは「Sample Cafe」用のデモ管理コンソールです。<br>
+           デフォルトログイン情報：ユーザー名 <code>admin</code> / パスワード <code>admin1234</code>
+        </p>
     </div>
 </footer>
 </body>

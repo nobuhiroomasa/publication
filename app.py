@@ -120,7 +120,7 @@ def init_db():
             (default_username, password_hash, datetime.utcnow().isoformat()),
         )
         conn.commit()
-        print("Initialized default admin user -> username: admin / password: admin1234")
+        print("初期管理者ユーザーを作成しました -> ユーザー名: admin / パスワード: admin1234")
 
     # Seed content
     seed_content(cur)
@@ -131,62 +131,64 @@ def init_db():
 def seed_content(cur: sqlite3.Cursor) -> None:
     default_contents = {
         "top": dict(
-            title="Sample Cafe Experience",
-            subtitle="Crafted moments in every cup.",
+            title="Sample Cafe へようこそ",
+            subtitle="一杯ごとに、ちいさなひと休みを。",
             body=(
-                "Welcome to our sample cafe showcase. This demo site illustrates how you can "
-                "present an unforgettable first impression with bold imagery, curated stories, "
-                "and immersive design tailored for beverage and dining concepts."
+                "こちらはカフェ・飲食店向けのデモサイトです。写真や文章、色合いを整えることで、"
+                "初めてのお客様にもお店の雰囲気やこだわりが伝わるトップページを表現できます。"
+                "管理画面からテキストや画像を自由に編集して、あなたのお店仕様にカスタマイズしてください。"
             ),
-            highlight="Sip. Savor. Share.",
+            highlight="淹れたての時間を、ゆっくりと。",
             image="/static/images/hero.svg",
-            extra_info="signature=Seasonal single-origin beans & artisanal desserts",
+            extra_info="signature=季節ごとに変わるシングルオリジンコーヒーと自家製デザート",
         ),
         "access": dict(
-            title="Access & Hours",
-            subtitle="Find your way to comfort.",
+            title="アクセス・営業時間",
+            subtitle="落ち着いた時間を過ごせる、あなたの隠れ家へ。",
             body=(
-                "We welcome you to our sample location. Adjust the following details from the "
-                "admin dashboard to mirror your own operational hours, contact information, "
-                "and neighborhood tips."
+                "こちらのページでは、住所・電話番号・最寄り駅からの道順など、"
+                "ご来店に必要な情報をまとめて案内できます。管理画面から営業時間や"
+                "定休日などを変更して、実際の店舗情報に合わせてご利用ください。"
             ),
-            highlight="Weekdays: 09:00-20:00 / Weekends: 10:00-22:00",
+            highlight="平日 09:00〜20:00 / 土日祝 10:00〜22:00",
             image="/static/images/interior.svg",
             extra_info=(
-                "address=123 Demo Street, Sample District\n"
-                "phone=000-0000-0000\n"
-                "holiday=Open year-round"
+                "住所=デモ市サンプル区サンプル町1-2-3\n"
+                "電話=000-0000-0000\n"
+                "定休日=年中無休"
             ),
         ),
         "reservations": dict(
-            title="Reservations",
-            subtitle="Reserve your table effortlessly.",
+            title="ご予約について",
+            subtitle="お席のご予約はお気軽にどうぞ。",
             body=(
-                "Demonstrate how guests can secure their seats. Integrate your preferred booking "
-                "platform by updating the reservation link below, or invite guests to call for "
-                "bespoke arrangements."
+                "お客様がスムーズにお席を予約できるように、予約方法をわかりやすくまとめておくスペースです。"
+                "外部の予約システムへのリンクや、お電話・メールでの受付方法などを自由に記載できます。"
             ),
-            highlight="Your experience, perfectly timed.",
+            highlight="一人ひとりに合わせた心地よい時間をご用意します。",
             image="/static/images/latte-art.svg",
-            extra_info="cta=Book Now|link=#",
+            extra_info="cta=Webで予約する|link=#",
         ),
         "about": dict(
-            title="Story & Philosophy",
-            subtitle="Hospitality shaped by passion.",
+            title="ストーリーとこだわり",
+            subtitle="一杯のコーヒーに込めた想い。",
             body=(
-                "This space is ideal for sharing the ethos behind your brand — from sourcing "
-                "ingredients to honoring community. Customize the narrative to articulate the "
-                "values that distinguish your establishment."
+                "お店のはじまりや、豆・食材へのこだわり、空間づくりへの想いなどを伝えるためのページです。"
+                "産地とのつながりや、地域への想い、スタッフのストーリーなどを自由に書き換えて、"
+                "ブランドの世界観をお客様に届けてください。"
             ),
-            highlight="Crafting comfort through mindful details.",
+            highlight="心をほどく一杯を、ていねいに。",
             image="/static/images/roastery.svg",
-            extra_info="team=Founder, Head Roaster, Experience Curator",
+            extra_info="team=オーナー, バリスタ, パティシエ",
         ),
         "features": dict(
-            title="Highlights",
-            subtitle="Distinctive delights for every visit.",
-            body="Update these feature cards to emphasize seasonal menus, artisan partnerships, or special services.",
-            highlight="Curated just for you.",
+            title="ハイライト",
+            subtitle="訪れるたびにうれしい、小さな特別をご用意しています。",
+            body=(
+                "おすすめメニューや季節限定、イベント情報など、お店の『推しポイント』を"
+                "カード形式で一覧表示できます。管理画面から自由に追加・削除・編集可能です。"
+            ),
+            highlight="今日の気分に寄り添う一杯を。",
             image="/static/images/dessert.svg",
             extra_info="",
         ),
@@ -216,9 +218,9 @@ def seed_content(cur: sqlite3.Cursor) -> None:
     cur.execute("SELECT COUNT(*) FROM gallery_images")
     if cur.fetchone()[0] == 0:
         sample_images = [
-            ("/static/images/gallery1.svg", "Signature espresso moment"),
-            ("/static/images/gallery2.svg", "Community events & pop-ups"),
-            ("/static/images/gallery3.svg", "Curated desserts & pairings"),
+            ("/static/images/gallery1.svg", "看板エスプレッソの一杯"),
+            ("/static/images/gallery2.svg", "イベントやポップアップの様子"),
+            ("/static/images/gallery3.svg", "季節のデザートとドリンクのペアリング"),
         ]
         for order, (path, caption) in enumerate(sample_images, start=1):
             cur.execute(
@@ -230,9 +232,21 @@ def seed_content(cur: sqlite3.Cursor) -> None:
     cur.execute("SELECT COUNT(*) FROM features")
     if cur.fetchone()[0] == 0:
         sample_features = [
-            ("Seasonal Pairings", "Rotating dessert collaborations designed for each roast profile.", "fa-leaf"),
-            ("Acoustic Evenings", "Live sessions every weekend featuring local talent.", "fa-music"),
-            ("Barista Workshops", "Hands-on brewing classes to empower enthusiasts.", "fa-chalkboard-teacher"),
+            (
+                "季節のペアリング",
+                "コーヒーごとに相性を考えた、季節限定のデザートセットをご用意しています。",
+                "fa-leaf",
+            ),
+            (
+                "アコースティックナイト",
+                "週末の夜には、地域のアーティストによる生演奏をお楽しみいただけます。",
+                "fa-music",
+            ),
+            (
+                "バリスタワークショップ",
+                "ご自宅でも楽しめるハンドドリップ講座など、少人数制のワークショップを開催しています。",
+                "fa-chalkboard-teacher",
+            ),
         ]
         for title, description, icon in sample_features:
             cur.execute(
@@ -245,8 +259,8 @@ def seed_content(cur: sqlite3.Cursor) -> None:
         cur.execute(
             "INSERT INTO announcements (title, content, published_at) VALUES (?, ?, ?)",
             (
-                "Now Brewing: Demo Origin",
-                "Showcase a featured bean or seasonal menu item to keep guests informed.",
+                "本日のおすすめ豆が変わりました",
+                "季節のおすすめや新入荷の豆など、最新情報をここでお知らせできます。",
                 datetime.utcnow().isoformat(),
             ),
         )
@@ -260,11 +274,13 @@ def allowed_file(filename: str) -> bool:
 
 def fetch_content(section: str):
     conn = get_db_connection()
-    content = conn.execute(
+    row = conn.execute(
         "SELECT * FROM site_content WHERE section = ?", (section,)
     ).fetchone()
     conn.close()
-    return content
+    # Row → dict にして返す（存在しなければ None）
+    return dict(row) if row is not None else None
+
 
 
 def update_content(section: str, data: dict) -> None:
@@ -296,19 +312,18 @@ def register_routes(app: Flask) -> None:
     def inject_navigation():
         return dict(
             nav_links=[
-                ("Home", "main.top"),
-                ("Access", "main.access"),
-                ("Reservations", "main.reservations"),
-                ("Gallery", "main.gallery"),
-                ("Story", "main.about"),
-                ("Highlights", "main.features"),
+                ("ホーム", "main.top"),
+                ("アクセス", "main.access"),
+                ("予約", "main.reservations"),
+                ("ギャラリー", "main.gallery"),
+                ("ストーリー", "main.about"),
+                ("ハイライト", "main.features"),
             ]
         )
 
     @app.context_processor
     def inject_now():
         return dict(now=datetime.utcnow)
-
 
     def login_required(view_func):
         @wraps(view_func)
@@ -333,23 +348,29 @@ def register_routes(app: Flask) -> None:
             announcements=announcements,
             gallery=gallery,
         )
+
     def access():
         content = fetch_content("access")
         return render_template("site/access.html", content=content)
+
     def reservations():
         content = fetch_content("reservations")
         return render_template("site/reservations.html", content=content)
+
     def gallery():
         images = fetch_gallery()
         return render_template("site/gallery.html", images=images)
+
     def about():
         content = fetch_content("about")
         announcements = fetch_announcements()
         return render_template("site/about.html", content=content, announcements=announcements)
+
     def features_page():
         content = fetch_content("features")
         features = fetch_features()
         return render_template("site/features.html", content=content, features=features)
+
     # Admin routes
     def login():
         if request.method == "POST":
@@ -367,11 +388,13 @@ def register_routes(app: Flask) -> None:
                 return redirect(url_for("admin.dashboard"))
             flash("ログインに失敗しました。", "danger")
         return render_template("admin/login.html")
+
     @login_required
     def logout():
         session.clear()
         flash("ログアウトしました。", "info")
         return redirect(url_for("admin.login"))
+
     @login_required
     def dashboard():
         contents = fetch_all_content()
@@ -383,6 +406,7 @@ def register_routes(app: Flask) -> None:
         return render_template(
             "admin/dashboard.html", contents=contents, stats=stats
         )
+
     @login_required
     def edit_content(section):
         content = fetch_content(section)
@@ -402,6 +426,7 @@ def register_routes(app: Flask) -> None:
             flash("更新しました。", "success")
             return redirect(url_for("admin.edit_content", section=section))
         return render_template("admin/edit_content.html", content=content)
+
     @login_required
     def manage_gallery():
         if request.method == "POST":
@@ -430,6 +455,7 @@ def register_routes(app: Flask) -> None:
                     flash("画像ファイルを選択してください。", "warning")
         images = fetch_gallery()
         return render_template("admin/manage_gallery.html", images=images)
+
     @login_required
     def manage_features():
         if request.method == "POST":
@@ -446,6 +472,7 @@ def register_routes(app: Flask) -> None:
                 flash("ハイライトを削除しました。", "info")
         features = fetch_features()
         return render_template("admin/manage_features.html", features=features)
+
     @login_required
     def manage_announcements():
         if request.method == "POST":
@@ -463,6 +490,7 @@ def register_routes(app: Flask) -> None:
         return render_template(
             "admin/manage_announcements.html", announcements=announcements
         )
+
     # Blueprint naming compatibility for nav
     app.add_url_rule("/", endpoint="main.top", view_func=top)
     app.add_url_rule("/access", endpoint="main.access", view_func=access)

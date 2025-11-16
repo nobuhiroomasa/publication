@@ -1,22 +1,22 @@
 {% extends 'admin/base.html' %}
-{% block title %}Dashboard | Sample Cafe CMS{% endblock %}
+{% block title %}ダッシュボード | Sample Cafe CMS{% endblock %}
 {% block content %}
 <section class="dashboard">
     <header class="dashboard-header">
-        <h1>Dashboard</h1>
+        <h1>ダッシュボード</h1>
         <p>管理画面から公式サイトのコンテンツを更新できます。</p>
     </header>
     <div class="stats-grid">
         <div class="stat-card">
-            <span class="label">Gallery Items</span>
+            <span class="label">ギャラリー登録数</span>
             <span class="value">{{ stats['gallery_count'] }}</span>
         </div>
         <div class="stat-card">
-            <span class="label">Highlights</span>
+            <span class="label">ハイライト登録数</span>
             <span class="value">{{ stats['feature_count'] }}</span>
         </div>
         <div class="stat-card">
-            <span class="label">Announcements</span>
+            <span class="label">お知らせ件数</span>
             <span class="value">{{ stats['announcement_count'] }}</span>
         </div>
     </div>
