@@ -294,7 +294,7 @@ a:hover {
 }
 
 .intro {
-    margin: -60px auto 3rem;
+
     background: var(--surface);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow);
