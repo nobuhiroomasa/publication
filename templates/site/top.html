@@ -1,32 +1,89 @@
 {% extends 'site/base.html' %}
 {% block title %}Sample Cafe | Official Site{% endblock %}
 {% block content %}
-<section class="hero" style="background-image: url('{{ content["image"] }}');">
-    <div class="hero-overlay"></div>
+<section class="hero" style="background-image: url('{{ content["image"] }}');" data-animate>
     <div class="hero-content container">
-        <span class="hero-label">Sample Collection</span>
+        <span class="hero-badge">Weekend Lounge</span>
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
-        <div class="hero-highlight">{{ content['highlight'] }}</div>
-        <a href="{{ url_for('main.reservations') }}" class="btn-primary">Reserve a Table</a>
+        <div class="hero-highlights">
+            <ul class="highlight-pills">
+                <li>柔らかな照明と彩度の高いグリーン</li>
+                <li>スイーツとハンドドリップのペアリング</li>
+                <li>撮りたくなるテーブルスタイリング</li>
+            </ul>
+            <div class="metric-badge">
+                <i class="fab fa-instagram"></i>
+                <div>
+                    <div class="metric-value" data-count="54000">0</div>
+                    <small>Instagram followers</small>
+                </div>
+            </div>
+        </div>
+        <div class="hero-actions">
+            <a href="{{ url_for('main.reservations') }}" class="btn-primary">WEB予約</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="btn-glass">Instagramをフォロー</a>
+        </div>
     </div>
 </section>
-<section class="intro container">
-    <div class="intro-text">
-        <h2>Curated Hospitality Demo</h2>
+<section class="intro container" data-animate>
+    <div>
+        <h2>鮮やかな余白でくつろぐ</h2>
         <p>{{ content['body'] }}</p>
     </div>
     <div class="intro-card">
         <h3>Signature Notes</h3>
-        <p>{{ content['extra_info'].split('=')[1] if content['extra_info'] and 'signature=' in content['extra_info'] else 'Seasonal inspirations available.' }}</p>
-        <a href="{{ url_for('main.features') }}" class="btn-outline">Explore Highlights</a>
+        <p>{{ content['extra_info'].split('=')[1] if content['extra_info'] and 'signature=' in content['extra_info'] else '季節のインフュージョンやスペシャルローストを体験できます。' }}</p>
+        <a href="{{ url_for('main.features') }}" class="btn-outline">ハイライトを見る</a>
+    </div>
+    <div class="intro-card">
+        <h3>Instagram Live</h3>
+        <p>20代女性の「いきたい！」を引き出すライブ配信とリールを毎週更新。</p>
+        <a href="https://www.instagram.com/" class="btn-secondary" target="_blank" rel="noopener">@samplecafe</a>
     </div>
 </section>
-<section class="announcements">
+<section class="social-proof" data-animate>
     <div class="container">
         <header class="section-header">
-            <h2>Announcements</h2>
-            <p>Keep guests informed with fresh updates.</p>
+            <h2>Social Love</h2>
+            <p>写真を通じてコミュニティを広げ、インスタ登録者数UPを後押し。</p>
+        </header>
+        <div class="metrics">
+            <div class="card">
+                <strong data-count="680">0</strong>
+                <span>今月の保存数</span>
+            </div>
+            <div class="card">
+                <strong data-count="120">0</strong>
+                <span>UGCストーリー</span>
+            </div>
+            <div class="card">
+                <strong data-count="48">0</strong>
+                <span>コラボ投稿</span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="feature-grid container" data-animate>
+    <header class="section-header">
+        <h2>Experience Highlights</h2>
+        <p>色彩・香り・音の3レイヤーで構成された空間演出。</p>
+    </header>
+    <div class="grid">
+        {% for feature in features %}
+        <div class="feature-card">
+            <i class="fas {{ feature['icon'] }}"></i>
+            <h3>{{ feature['title'] }}</h3>
+            <p>{{ feature['description'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section class="announcements" data-animate>
+    <div class="container">
+        <header class="section-header">
+            <h2>News & Journal</h2>
+            <p>最新のイベントや限定メニューをチェックして、来店前からワクワクをシェア。</p>
         </header>
         <div class="announcement-grid">
             {% for announcement in announcements %}
@@ -39,26 +96,34 @@
         </div>
     </div>
 </section>
-<section class="feature-grid container">
-    <header class="section-header">
-        <h2>Highlights</h2>
-        <p>Showcase experiences that define your brand.</p>
-    </header>
-    <div class="grid">
-        {% for feature in features %}
-        <div class="feature-card">
-            <i class="fas {{ feature['icon'] }}"></i>
-            <h3>{{ feature['title'] }}</h3>
-            <p>{{ feature['description'] }}</p>
+<section class="insta-focus" data-animate>
+    <div class="container">
+        <div class="insta-header">
+            <div>
+                <p class="hero-label">Instagram Reels</p>
+                <h2>Colorful Moments</h2>
+            </div>
+            <div class="insta-handle">
+                <i class="fab fa-instagram"></i>
+                <span>@samplecafe</span>
+            </div>
+            <a href="https://www.instagram.com/" class="btn-primary" target="_blank" rel="noopener">フォローして最新情報を受け取る</a>
         </div>
-        {% endfor %}
+        <div class="insta-grid">
+            {% for image in gallery[:4] %}
+            <div class="insta-card">
+                <img src="{{ image['file_path'] }}" alt="{{ image['caption'] or 'Instagram highlight' }}">
+                <p>{{ image['caption'] or 'Daily mood' }}</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
-<section class="gallery-preview">
+<section class="gallery-preview" data-animate>
     <div class="container">
         <header class="section-header">
             <h2>Gallery</h2>
-            <p>Visual storytelling from the cafe floor.</p>
+            <p>空間・プロダクト・カルチャーを立体的に感じられるビジュアルストーリー。</p>
         </header>
         <div class="gallery-grid">
             {% for image in gallery %}
@@ -69,16 +134,16 @@
             {% endfor %}
         </div>
         <div class="cta-center">
-            <a href="{{ url_for('main.gallery') }}" class="btn-outline">View Full Gallery</a>
+            <a href="{{ url_for('main.gallery') }}" class="btn-outline">もっと見る</a>
         </div>
     </div>
 </section>
 <section class="cta-banner" style="background-image: url('/static/images/cta.svg');">
     <div class="overlay"></div>
     <div class="container">
-        <h2>Design your next concept with confidence.</h2>
-        <p>Use this demo CMS to prototype how your story unfolds.</p>
-        <a href="{{ url_for('admin.login') }}" class="btn-primary">Enter Admin Console</a>
+        <h2>サイトにアクセスするたび新しい発見を</h2>
+        <p>Web × 空間の世界観をここでシミュレーション。デモ管理画面から簡単に更新できます。</p>
+        <a href="{{ url_for('admin.login') }}" class="btn-primary">Adminにログイン</a>
     </div>
 </section>
 {% endblock %}

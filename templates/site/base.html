@@ -6,7 +6,7 @@
     <title>{% block title %}Sample Cafe Official Site{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dyZP2w7Uja2+G2kZZgwyU0YzUKGwEuITdSb9VjA36TObgGJE0E7E5Wdl66iRS0LlwM651c01qmPvvrL1jAU6mA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
     <script defer src="{{ url_for('static', filename='js/site.js') }}"></script>
@@ -16,14 +16,14 @@
 <div class="page-loader" id="pageLoader">
     <div class="loader-content">
         <div class="loader-logo"><i class="fas fa-mug-hot"></i></div>
-        <p class="loader-text">Brewed moments, loading...</p>
+        <p class="loader-text">香りを準備中…</p>
     </div>
 </div>
 <header class="site-header">
-    <div class="header-inner">
-        <div class="brand">Sample Cafe</div>
+    <div class="header-inner container">
+        <div class="brand">Sample Cafe<span>URBAN SLOW COFFEE</span></div>
         <nav class="main-nav">
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" aria-label="メニューを開く">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -33,6 +33,7 @@
                 <li class="nav-item"><a href="{{ url_for(endpoint) }}">{{ label }}</a></li>
                 {% endfor %}
             </ul>
+            <a class="nav-cta" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
         </nav>
     </div>
 </header>
@@ -40,33 +41,36 @@
     {% block content %}{% endblock %}
 </main>
 <footer class="site-footer">
-    <div class="footer-grid">
-        <div>
-            <h4>Sample Cafe</h4>
-            <p>Demo CMS experience crafted for showcasing hospitality brands.</p>
-        </div>
-        <div>
-            <h4>Contact</h4>
-            <ul>
-                <li>Mail: hello@example.com</li>
-                <li>Tel: 000-0000-0000</li>
-                <li>Visit: Customize your address from the admin panel.</li>
-            </ul>
-        </div>
-        <div>
-            <h4>Hours</h4>
-            <p>Weekdays 09:00-20:00<br>Weekends 10:00-22:00</p>
-        </div>
-        <div>
-            <h4>Follow</h4>
-            <div class="socials">
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4>Sample Cafe</h4>
+                <p>20〜40代がふらっと立ち寄れる、ゆるくて鮮やかなサードプレイスを提案しています。</p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>Mail : hello@example.com</li>
+                    <li>Tel : 000-0000-0000</li>
+                    <li>Address : Adminから自由に更新できます</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Hours</h4>
+                <p>Weekdays 09:00-20:00<br>Weekends 10:00-22:00</p>
+            </div>
+            <div>
+                <h4>Follow</h4>
+                <p>撮ってすぐ共有したくなる瞬間をインスタで毎日発信中。</p>
+                <div class="socials">
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
+        <p class="copyright">© {{ now().year }} Sample Cafe Demo. All rights reserved.</p>
     </div>
-    <p class="copyright">© {{ now().year }} Sample Cafe Demo. All rights reserved.</p>
 </footer>
 </body>
 </html>
