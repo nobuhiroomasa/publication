@@ -1,16 +1,15 @@
 {% extends 'site/base.html' %}
 {% block title %}Story | Sample Cafe{% endblock %}
 {% block content %}
-<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
-    <div class="overlay"></div>
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');" data-animate>
     <div class="container">
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
     </div>
 </section>
-<section class="page-section container two-column">
+<section class="page-section container two-column" data-animate>
     <div>
-        <h2>Our Narrative</h2>
+        <h2>Brand Story</h2>
         <p>{{ content['body'] }}</p>
         <div class="info-block">
             <h3>Philosophy</h3>
@@ -18,7 +17,7 @@
         </div>
     </div>
     <div class="story-card">
-        <h3>Team</h3>
+        <h3>Creative Team</h3>
         {% if content['extra_info'] and 'team=' in content['extra_info'] %}
             {% set members = content['extra_info'].split('=',1)[1].split(',') %}
             <ul>
@@ -27,14 +26,14 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>Introduce your key members and collaborators.</p>
+            <p>バリスタ、フラワーアーティスト、フードスタイリストの共作で女性に響く世界観を組み立てています。</p>
         {% endif %}
     </div>
 </section>
-<section class="page-section container">
+<section class="page-section container" data-animate>
     <header class="section-header">
         <h2>Announcements & Media</h2>
-        <p>Share press coverage, collaborations, or recent highlights.</p>
+        <p>プレス掲載や最新のコラボ情報をアーカイブ。</p>
     </header>
     <div class="announcement-grid">
         {% for announcement in announcements %}
@@ -46,14 +45,20 @@
         {% endfor %}
     </div>
 </section>
-<section class="page-section accent">
-    <div class="container">
-        <h2>Values</h2>
-        <ul class="bullet-list">
-            <li>Respect for producers and provenance.</li>
-            <li>Immersive guest experience through details.</li>
-            <li>Commitment to sustainability and transparency.</li>
-        </ul>
+<section class="page-section accent" data-animate>
+    <div class="container split">
+        <div>
+            <h2>Values</h2>
+            <ul class="bullet-list">
+                <li>プロデューサーやロースターへのリスペクト。</li>
+                <li>手ざわりや香りを感じるディテール。</li>
+                <li>サステナブルなサプライチェーン。</li>
+            </ul>
+        </div>
+        <div>
+            <h2>コミュニティとの関係</h2>
+            <p>ローカルブランドやアーティストと連携し、店内ポップアップやインスタライブを企画。オンラインでも居心地の良さを届けます。</p>
+        </div>
     </div>
 </section>
 {% endblock %}

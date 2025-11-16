@@ -1,14 +1,13 @@
 {% extends 'site/base.html' %}
 {% block title %}Highlights | Sample Cafe{% endblock %}
 {% block content %}
-<section class="page-hero" style="background-image: url('{{ content['image'] }}');">
-    <div class="overlay"></div>
+<section class="page-hero" style="background-image: url('{{ content['image'] }}');" data-animate>
     <div class="container">
         <h1>{{ content['title'] }}</h1>
         <p>{{ content['subtitle'] }}</p>
     </div>
 </section>
-<section class="page-section container">
+<section class="page-section container" data-animate>
     <p>{{ content['body'] }}</p>
     <div class="grid feature-expanded">
         {% for feature in features %}
@@ -20,19 +19,19 @@
         {% endfor %}
     </div>
 </section>
-<section class="page-section accent">
+<section class="page-section accent" data-animate>
     <div class="container split">
         <div>
             <h2>Experience Toolkit</h2>
             <ul class="bullet-list">
-                <li>Menu storytelling and tasting notes.</li>
-                <li>Merchandising, retail, and e-commerce touchpoints.</li>
-                <li>Community programming and collaborative partnerships.</li>
+                <li>メニューにストーリー性を加えるリーフレット。</li>
+                <li>インテリアカラーとリンクしたオリジナルラテアート。</li>
+                <li>Instagramに適した撮影ライティングを常設。</li>
             </ul>
         </div>
         <div>
             <h2>Implementation Ideas</h2>
-            <p>Use the admin console to toggle seasonal features, launch campaigns, or test new service models before rolling them out.</p>
+            <p>管理画面から季節限定のコンテンツやキャンペーンを素早く入れ替え。テキスト・ビジュアルを自由に差し替えてブランドの表情を更新できます。</p>
         </div>
     </div>
 </section>
