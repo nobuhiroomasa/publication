@@ -1,0 +1,17 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+main {
+  min-height: 60vh;
+}
+
+.site-header .brand {
+  color: inherit;
+}
+
+.nav-toggle span {
+  display: block;
+}
